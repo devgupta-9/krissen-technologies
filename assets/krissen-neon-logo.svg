@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1983 793" role="img" aria-labelledby="title desc">
+  <title id="title">Krissen Technologies</title>
+  <desc id="desc">Neon lime Krissen Technologies wordmark and geometric K monogram.</desc>
+  <defs>
+    <linearGradient id="neon" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d7ff2f"/>
+      <stop offset="1" stop-color="#bfff54"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <g fill="url(#neon)" filter="url(#glow)">
+    <path d="M108 257 220 181v156L108 414Z"/>
+    <path d="M108 414h112v181H108Z"/>
+    <path d="M144 411 382 171h126L254 413Z"/>
+    <path d="M239 453 323 386l196 207H376Z"/>
+    <text x="520" y="454" font-family="Arial, Helvetica, sans-serif" font-size="255" font-weight="800" letter-spacing="-7">KRISSEN</text>
+    <text x="538" y="566" font-family="Arial, Helvetica, sans-serif" font-size="84" font-weight="700" letter-spacing="28">TECHNOLOGIES</text>
+    <text x="1845" y="300" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="800">TM</text>
+  </g>
+</svg>
