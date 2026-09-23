@@ -1,3 +1,6 @@
+const googleFonts = document.querySelector('#google-fonts');
+if (googleFonts) googleFonts.media = 'all';
+
 const button = document.querySelector('.menu-button');
 const mobileNav = document.querySelector('#mobile-nav');
 button?.addEventListener('click', () => {
@@ -37,6 +40,10 @@ let lastFocused = null;
 function openInquiry() {
   if (!inquiryModal) return;
   lastFocused = document.activeElement;
+  if (mobileNav && !mobileNav.hidden) {
+    mobileNav.hidden = true;
+    button?.setAttribute('aria-expanded', 'false');
+  }
   inquiryModal.hidden = false;
   document.body.classList.add('modal-open');
   requestAnimationFrame(() => inquiryDialog?.querySelector('input,select,textarea,button')?.focus());

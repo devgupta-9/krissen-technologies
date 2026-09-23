@@ -14,8 +14,14 @@
   <title>Krissen Technologies — Product Engineering & Digital Systems</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700&display=swap">
+  <link id="google-fonts" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet" media="print">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    .statement,.work,.capabilities,.studio,.contact,.site-footer{content-visibility:auto;contain-intrinsic-size:auto 900px}
+    @media(max-width:900px){.noise{display:none}}
+  </style>
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -169,7 +175,7 @@
   </main>
 
   <footer class="site-footer section-shell">
-    <a class="footer-logo" href="#top" aria-label="Krissen Technologies home"><img src="assets/krissen-neon-logo.png" alt="Krissen Technologies" /></a>
+    <a class="footer-logo" href="#top" aria-label="Krissen Technologies home"><img src="assets/krissen-neon-logo.svg" alt="Krissen Technologies" loading="lazy" decoding="async" /></a>
     <div class="footer-meta">
       <a class="footer-email" href="mailto:devgupta9@outlook.in" aria-label="Email Krissen Technologies"><span aria-hidden="true">✉</span> devgupta9@outlook.in</a>
       <span>Product engineering · Cloud platforms · Commerce · AI-native systems</span>
@@ -206,6 +212,6 @@
       </div>
     </section>
   </div>
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
