@@ -44,7 +44,7 @@ previewProjects.forEach(project => {
   preview.rel = 'noopener';
   preview.setAttribute('aria-label', `Open ${project.name} live website`);
 
-  const screenshotUrl = `https://image.thum.io/get/width/1600/crop/1000/noanimate/${project.url}`;
+  const screenshotUrl = `https://image.thum.io/get/fullpage/width/1200/allowJPG/noanimate/${project.url}`;
   preview.innerHTML = `
     <div class="live-preview-chrome" aria-hidden="true">
       <span class="live-preview-dots"><i></i><i></i><i></i></span>
@@ -52,12 +52,33 @@ previewProjects.forEach(project => {
       <span class="live-preview-status">LIVE SITE</span>
     </div>
     <div class="live-preview-stage">
-      <img src="${screenshotUrl}" alt="${project.name} live website preview" loading="lazy" decoding="async" fetchpriority="low" />
+      <img src="${screenshotUrl}" alt="${project.name} full landing page preview" loading="lazy" decoding="async" fetchpriority="low" />
+      <span class="live-preview-explore" aria-hidden="true">Hover to explore page ↓</span>
     </div>
     <div class="live-preview-caption" aria-hidden="true">
       <strong>${project.name}</strong>
       <span>${project.caption}</span>
     </div>`;
+
+  const stage = preview.querySelector('.live-preview-stage');
+  const image = preview.querySelector('.live-preview-stage img');
+
+  const updatePreviewPan = () => {
+    if (!stage || !image || !image.naturalWidth || !image.naturalHeight) return;
+    const renderedHeight = image.naturalHeight * (stage.clientWidth / image.naturalWidth);
+    const distance = Math.max(0, renderedHeight - stage.clientHeight);
+    const duration = Math.min(18, Math.max(6, distance / 120));
+    preview.style.setProperty('--preview-pan', `${distance}px`);
+    preview.style.setProperty('--preview-duration', `${duration}s`);
+    preview.classList.toggle('has-long-page', distance > 32);
+  };
+
+  image?.addEventListener('load', updatePreviewPan);
+  if (image?.complete) updatePreviewPan();
+  if ('ResizeObserver' in window && stage) {
+    const resizeObserver = new ResizeObserver(updatePreviewPan);
+    resizeObserver.observe(stage);
+  }
 
   placeholder.replaceWith(preview);
 });
