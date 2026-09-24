@@ -1,6 +1,67 @@
 const googleFonts = document.querySelector('#google-fonts');
 if (googleFonts) googleFonts.media = 'all';
 
+const previewStyles = document.createElement('link');
+previewStyles.rel = 'stylesheet';
+previewStyles.href = 'project-previews.css';
+document.head.appendChild(previewStyles);
+
+const previewProjects = [
+  {
+    selector: '.banic-visual',
+    name: 'House of Banic',
+    domain: 'houseofbanic.com',
+    url: 'https://houseofbanic.com',
+    caption: 'Premium fragrance commerce',
+    mode: 'featured'
+  },
+  {
+    selector: '.ops-visual',
+    name: 'SuviOps',
+    domain: 'suviops-admin.pages.dev',
+    url: 'https://suviops-admin.pages.dev/',
+    caption: 'Operations platform',
+    mode: 'compact'
+  },
+  {
+    selector: '.hydro-visual',
+    name: 'Tato-I 186 MW HEP',
+    domain: 'tato-1-186mw-hep.pages.dev',
+    url: 'https://tato-1-186mw-hep.pages.dev/',
+    caption: 'Infrastructure project web',
+    mode: 'compact'
+  }
+];
+
+previewProjects.forEach(project => {
+  const placeholder = document.querySelector(project.selector);
+  if (!placeholder) return;
+
+  const preview = document.createElement('a');
+  preview.className = `live-site-preview live-site-preview--${project.mode}`;
+  preview.href = project.url;
+  preview.target = '_blank';
+  preview.rel = 'noopener';
+  preview.setAttribute('aria-label', `Open ${project.name} live website`);
+
+  const screenshotUrl = `https://image.thum.io/get/width/1600/crop/1000/noanimate/${project.url}`;
+  preview.innerHTML = `
+    <div class="live-preview-chrome" aria-hidden="true">
+      <span class="live-preview-dots"><i></i><i></i><i></i></span>
+      <span class="live-preview-address">${project.domain}</span>
+      <span class="live-preview-status">LIVE SITE</span>
+    </div>
+    <div class="live-preview-stage">
+      <img src="${screenshotUrl}" alt="${project.name} live website preview" loading="lazy" decoding="async" fetchpriority="low" />
+    </div>
+    <div class="live-preview-caption" aria-hidden="true">
+      <strong>${project.name}</strong>
+      <span>${project.caption}</span>
+    </div>`;
+
+  placeholder.replaceWith(preview);
+});
+
 const button = document.querySelector('.menu-button');
 const mobileNav = document.querySelector('#mobile-nav');
 button?.addEventListener('click', () => {
